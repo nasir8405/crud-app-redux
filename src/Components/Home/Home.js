@@ -1,5 +1,11 @@
 import React from "react";
 
-export const Home = () => {
-  return <div>Home</div>;
+const Home = () => {
+  return (
+    <div>
+      <h1>React Redux Crud Operation</h1>
+    </div>
+  );
 };
+
+export default Home;
