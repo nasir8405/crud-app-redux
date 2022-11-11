@@ -1,12 +1,24 @@
 import { initialState } from "../../Pages/Home/mockData";
+import { ADD_USER, DELETE_USER, EDIT_USER } from "../type";
 export const GET_DETAIL = "GET_DETAIL";
-const Reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_DETAIL:
-      return state;
+    case DELETE_USER:
+      const afterDelete = state.bodyData.filter((item) => {
+        return item.id !== action.payload;
+      });
+      return { ...state, bodyData: afterDelete };
+    case ADD_USER:
+      const afterAdd = JSON.parse(JSON.stringify(state));
+      afterAdd.bodyData.push(action.payload);
+      return afterAdd;
+    case EDIT_USER:
+      const afterEdit = JSON.parse(JSON.stringify(state));
+      const newData = afterEdit.bodyData.splice((action.index, 0, action.user));
+      return newData;
     default:
       return state;
   }
 };
 
-export default Reducer;
+export default reducer;

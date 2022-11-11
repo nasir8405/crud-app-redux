@@ -1,9 +1,7 @@
-import { GET_DETAIL } from "../type";
-
-const Action = () => {
+const Action = (action) => {
   return {
-    type: GET_DETAIL,
-    payload: "",
+    type: action.type,
+    payload: action.payload,
   };
 };
 

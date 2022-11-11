@@ -5,16 +5,19 @@ import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
 import Action from "../../redux/action/action";
 
-export const AddUser = () => {
+export const EditUser = ({ id, index }) => {
   const bodyData = useSelector((state) => state.reducer.bodyData);
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const user1 = bodyData.find((item) => {
+    return item.id === id;
+  });
   const [user, setUser] = useState({
-    col2: "",
-    col3: "",
-    col4: "",
+    col2: user1.col2,
+    col3: user1.col3,
+    col4: user1.col4,
   });
   const { col2, col3, col4 } = user;
   const onHandleChange = (e) => {
@@ -22,17 +25,15 @@ export const AddUser = () => {
   };
   const handleSubmit = (e) => {
     dispatch(
-      Action({
-        type: "ADD_USER",
-        payload: { ...user, id: bodyData.length + 1 },
-      })
+      Action({ type: "EDIT_USER", payload: { ...user, id: id }, index: index })
     );
-    handleClose();
+    console.log(user);
+    // handleClose();
   };
   return (
     <>
-      <Button variant="primary px-5" onClick={handleShow}>
-        ADD
+      <Button className="btn btn-primary mx-2" onClick={handleShow}>
+        Edit
       </Button>
 
       <Modal
@@ -82,8 +83,8 @@ export const AddUser = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={(e) => handleSubmit(e)}>
-            ADD
+          <Button variant="warning" onClick={(e) => handleSubmit(e)}>
+            Update
           </Button>
         </Modal.Footer>
       </Modal>
