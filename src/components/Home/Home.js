@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Action from "../redux/action/action";
+import Action from "../../redux/action/action";
 import Table from "react-bootstrap/Table";
 
-const Home = () => {
+export const Home = () => {
   const dispatch = useDispatch();
   const headerData = useSelector((state) => state.reducer.headerData);
   const bodyData = useSelector((state) => state.reducer.bodyData);
@@ -11,8 +11,7 @@ const Home = () => {
     dispatch(Action());
   }, [dispatch]);
   return (
-    <div className="container">
-      <h1>React Redux Crud Operation</h1>
+    <div>
       <Table striped bordered hover className="my-5">
         <thead>
           {headerData.map((item) => {
@@ -22,7 +21,6 @@ const Home = () => {
                 <th>{item.col2}</th>
                 <th>{item.col3}</th>
                 <th>{item.col4}</th>
-                <th>{item.col5}</th>
                 <th>Action</th>
               </tr>
             );
@@ -53,11 +51,6 @@ const Home = () => {
                   </div>
                 </td>
                 <td>
-                  <div className="h-100 d-flex align-center justify-content-center">
-                    {item.col5}
-                  </div>
-                </td>
-                <td>
                   <button className="btn btn-info">View</button>
                   <button className="btn btn-primary mx-2">Edit</button>
                   <button className="btn btn-danger">Delete</button>
@@ -70,5 +63,3 @@ const Home = () => {
     </div>
   );
 };
-
-export default Home;
