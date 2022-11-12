@@ -24,7 +24,7 @@ export const AddUser = () => {
     dispatch(
       Action({
         type: "ADD_USER",
-        payload: { ...user, id: bodyData.length + 1 },
+        payload: { ...user, id: JSON.stringify(bodyData.length + 1) },
       })
     );
     handleClose();

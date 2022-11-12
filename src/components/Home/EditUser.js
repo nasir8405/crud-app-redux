@@ -25,7 +25,11 @@ export const EditUser = ({ id, index }) => {
   };
   const handleSubmit = (e) => {
     dispatch(
-      Action({ type: "EDIT_USER", payload: { ...user, id: id }, index: index })
+      Action({
+        type: "EDIT_USER",
+        payload: { ...user, id: id },
+        index: index,
+      })
     );
     console.log(user);
     // handleClose();
