@@ -15,6 +15,7 @@ export const EditUser = ({ id, index }) => {
     return item.id === id;
   });
   const [user, setUser] = useState({
+    id: user1.id,
     col2: user1.col2,
     col3: user1.col3,
     col4: user1.col4,
@@ -27,12 +28,10 @@ export const EditUser = ({ id, index }) => {
     dispatch(
       Action({
         type: "EDIT_USER",
-        payload: { ...user, id: id },
-        index: index,
+        payload: { user, index },
       })
     );
-    console.log(user);
-    // handleClose();
+    handleClose();
   };
   return (
     <>

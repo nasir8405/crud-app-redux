@@ -14,8 +14,8 @@ const reducer = (state = initialState, action) => {
       return afterAdd;
     case EDIT_USER:
       const afterEdit = JSON.parse(JSON.stringify(state));
-      const newData = afterEdit.bodyData.splice((action.index, 0, action.user));
-      return newData;
+      afterEdit.bodyData.splice(action.payload.index, 1, action.payload.user);
+      return afterEdit;
     default:
       return state;
   }

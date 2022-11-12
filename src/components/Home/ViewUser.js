@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 export const ViewUser = () => {
   const headerData = useSelector((state) => state.reducer.headerData);
@@ -31,6 +31,11 @@ export const ViewUser = () => {
           </tr>
         </tbody>
       </Table>
+      <div>
+        <Link to="/" className="btn btn-secondary">
+          Home
+        </Link>
+      </div>
     </div>
   );
 };

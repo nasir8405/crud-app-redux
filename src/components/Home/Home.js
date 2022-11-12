@@ -14,57 +14,63 @@ export const Home = () => {
   };
   return (
     <div>
-      <Table striped bordered hover className="my-5">
-        <thead>
-          <tr>
-            <th>{headerData.id}</th>
-            <th>{headerData.col2}</th>
-            <th>{headerData.col3}</th>
-            <th>{headerData.col4}</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {bodyData.map((item, index) => {
-            return (
-              <tr key={item.id}>
-                <td>
-                  <div className="h-100 d-flex align-center justify-content-center">
-                    {item.id}
-                  </div>
-                </td>
-                <td>
-                  <div className="h-100 d-flex align-center justify-content-center">
-                    {item.col2}
-                  </div>
-                </td>
-                <td>
-                  <div className="h-100 d-flex align-center justify-content-center">
-                    {item.col3}
-                  </div>
-                </td>
-                <td>
-                  <div className="h-100 d-flex align-center justify-content-center">
-                    {item.col4}
-                  </div>
-                </td>
-                <td>
-                  <Link to={`user/${item.id}`} className="btn btn-info">
-                    View
-                  </Link>
-                  <EditUser id={item.id} index={index} />
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => deleteUser(item.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+      {bodyData.length !== 0 ? (
+        <Table striped bordered hover className="my-5">
+          <thead>
+            <tr>
+              <th>{headerData.id}</th>
+              <th>{headerData.col2}</th>
+              <th>{headerData.col3}</th>
+              <th>{headerData.col4}</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {bodyData.map((item, index) => {
+              return (
+                <tr key={item.id}>
+                  <td>
+                    <div className="h-100 d-flex align-center justify-content-center">
+                      {item.id}
+                    </div>
+                  </td>
+                  <td>
+                    <div className="h-100 d-flex align-center justify-content-center">
+                      {item.col2}
+                    </div>
+                  </td>
+                  <td>
+                    <div className="h-100 d-flex align-center justify-content-center">
+                      {item.col3}
+                    </div>
+                  </td>
+                  <td>
+                    <div className="h-100 d-flex align-center justify-content-center">
+                      {item.col4}
+                    </div>
+                  </td>
+                  <td>
+                    <Link to={`user/${item.id}`} className="btn btn-info">
+                      View
+                    </Link>
+                    <EditUser id={item.id} index={index} />
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => deleteUser(item.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+      ) : (
+        <div className="bg-secondary text-white w-50 m-auto p-2">
+          Please Insert Value, Click on Above "ADD" Button
+        </div>
+      )}
     </div>
   );
 };

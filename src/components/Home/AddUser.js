@@ -11,6 +11,9 @@ export const AddUser = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [border1, setBorder1] = useState("");
+  const [border2, setBorder2] = useState("");
+  const [border3, setBorder3] = useState("");
   const [user, setUser] = useState({
     col2: "",
     col3: "",
@@ -21,13 +24,31 @@ export const AddUser = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
-    dispatch(
-      Action({
-        type: "ADD_USER",
-        payload: { ...user, id: JSON.stringify(bodyData.length + 1) },
-      })
-    );
-    handleClose();
+    if (user.col2 !== "" && user.col3 !== "" && user.col4 !== "") {
+      dispatch(
+        Action({
+          type: "ADD_USER",
+          payload: { ...user, id: JSON.stringify(bodyData.length + 1) },
+        })
+      );
+      user.col2 = "";
+      user.col3 = "";
+      user.col4 = "";
+      setBorder1("");
+      setBorder2("");
+      setBorder3("");
+      handleClose();
+    } else {
+      if (col2 === "") {
+        setBorder1("border border-danger");
+      }
+      if (col3 === "") {
+        setBorder2("border border-danger");
+      }
+      if (col4 === "") {
+        setBorder3("border border-danger");
+      }
+    }
   };
   return (
     <>
@@ -54,6 +75,7 @@ export const AddUser = () => {
                 value={col2}
                 onChange={(e) => onHandleChange(e)}
                 placeholder="Enter Your Name"
+                className={border1}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicProfession">
@@ -64,6 +86,7 @@ export const AddUser = () => {
                 value={col3}
                 onChange={(e) => onHandleChange(e)}
                 placeholder="Enter Game Name"
+                className={border2}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCountry">
@@ -74,6 +97,7 @@ export const AddUser = () => {
                 value={col4}
                 onChange={(e) => onHandleChange(e)}
                 placeholder="Enter Your Country"
+                className={border3}
               />
             </Form.Group>
           </Form>
