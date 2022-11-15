@@ -35,7 +35,7 @@ export const EditUser = ({ id, index }) => {
   };
   return (
     <>
-      <Button className="btn btn-primary mx-2" onClick={handleShow}>
+      <Button className="btn btn-primary" onClick={handleShow}>
         Edit
       </Button>
 

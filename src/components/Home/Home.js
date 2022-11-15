@@ -30,30 +30,22 @@ export const Home = () => {
               return (
                 <tr key={item.id}>
                   <td>
-                    <div className="h-100 d-flex align-center justify-content-center">
-                      {item.id}
-                    </div>
+                    <div>{item.id}</div>
                   </td>
                   <td>
-                    <div className="h-100 d-flex align-center justify-content-center">
-                      {item.col2}
-                    </div>
+                    <div>{item.col2}</div>
                   </td>
                   <td>
-                    <div className="h-100 d-flex align-center justify-content-center">
-                      {item.col3}
-                    </div>
+                    <div>{item.col3}</div>
                   </td>
                   <td>
-                    <div className="h-100 d-flex align-center justify-content-center">
-                      {item.col4}
-                    </div>
+                    <div>{item.col4}</div>
                   </td>
                   <td>
-                    <Link to={`user/${item.id}`} className="btn btn-info">
+                    <EditUser id={item.id} index={index} />
+                    <Link to={`user/${item.id}`} className="btn btn-info m-2">
                       View
                     </Link>
-                    <EditUser id={item.id} index={index} />
                     <button
                       className="btn btn-danger"
                       onClick={() => deleteUser(item.id)}
